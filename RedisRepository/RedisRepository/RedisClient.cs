@@ -88,17 +88,16 @@ namespace RedisRepository
         }
 
         /// <summary>
-        /// Add new list of records in redis 
+        /// Add new record in redis 
         /// </summary>
         /// <typeparam name="T">generic refrence type</typeparam>
         /// <param name="key">unique key of value</param>
-        /// <param name="value">value of key of type list of T</param>
-        /// <param name="expiresAt">time span of expiration</param>
+        /// <param name="value">value of key of type T</param>
         /// <returns>true or false</returns>
-        public bool Add<T>(string key, List<T> value, TimeSpan expiresAt) where T : class
+        public bool Update<T>(string key, T value) where T : class
         {
-            var stringContent =  SerializeContent(value);
-            return _db.StringSet(key, stringContent, expiresAt);
+            var stringContent = SerializeContent(value);
+            return _db.StringSet(key, stringContent);
         }
 
         /// <summary>
@@ -135,7 +134,7 @@ namespace RedisRepository
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
-        public List<T> Search<T>(string key) where T : class
+        public List<T> GetList<T>(string key) where T : class
         {
             try
             {

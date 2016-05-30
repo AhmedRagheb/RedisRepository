@@ -12,8 +12,9 @@ namespace RedisRepository
         void Stop();
         bool Add<T>(string key, object value, TimeSpan expiresAt) where T : class;
         bool Add<T>(string key, T value, TimeSpan expiresAt) where T : class;
-        bool Add<T>(string key, List<T> value, TimeSpan expiresAt) where T : class;
+        bool Update<T>(string key, T value) where T : class;
         T Get<T>(string key) where T : class;
-        List<T> Search<T>(string key) where T : class;
+        List<T> GetList<T>(string key) where T : class;
     }
 }
+
