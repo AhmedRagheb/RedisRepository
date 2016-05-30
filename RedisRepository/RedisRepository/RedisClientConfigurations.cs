@@ -32,7 +32,7 @@ namespace RedisRepository
             set { _connectRetry = value; }
         }
 
-        private static int _defaultDatabase = Configurations.Get("RedisDataBase", 0);
+        private static int _defaultDatabase = ConfigurationHelper.Get("RedisDataBase", 0);
         public static int DefaultDatabase
         {
             get { return _defaultDatabase; }
