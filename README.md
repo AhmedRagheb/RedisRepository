@@ -14,4 +14,4 @@
 <h2>Questions and Contributions</h2>
 
 - If you  found a bug or have a feature request, please report an issue or a pull request. 
-- If you have a question, feel free to contact me (aragheb.mail@gmail.com)
+- If you have a question, feel free to contact me (a.raghebmail@gmail.com)
