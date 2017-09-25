@@ -10,7 +10,7 @@ namespace RedisRepository
         void Remove(RedisKey[] keys);
         bool Exists(string key);
         void Stop();
-        bool Add<T>(string key, object value, TimeSpan expiresAt) where T : class;
+	    bool Add(string key, object value, TimeSpan expiresAt);
         bool Add<T>(string key, T value, TimeSpan expiresAt) where T : class;
         bool Update<T>(string key, T value) where T : class;
         T Get<T>(string key) where T : class;

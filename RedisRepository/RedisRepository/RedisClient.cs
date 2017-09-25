@@ -81,7 +81,7 @@ namespace RedisRepository
         /// <param name="value">value of key of type object</param>
         /// <param name="expiresAt">time span of expiration</param>
         /// <returns>true or false</returns>
-        public bool Add<T>(string key, object value, TimeSpan expiresAt) where T : class
+        public bool Add(string key, object value, TimeSpan expiresAt)
         {
             var stringContent = SerializeContent(value);
             return _db.StringSet(key, stringContent, expiresAt);
@@ -115,12 +115,10 @@ namespace RedisRepository
                 {
                     return DeserializeContent<T>(myString);
                 }
-                else
-                {
-                    return null;
-                }
+
+	            return null;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 // Log Exception
                 return null;
@@ -143,17 +141,12 @@ namespace RedisRepository
                 var keys = server.Keys(_db.Database, key);
                 var keyValues = _db.StringGet(keys.ToArray());
 
-                var result = new List<T>();
-                foreach (var redisValue in keyValues)
-                {
-                    if (redisValue.HasValue && !redisValue.IsNullOrEmpty)
-                    {
-                        var item = DeserializeContent<T>(redisValue);
-                        result.Add(item);
-                    }
-                }
+	            var values = (from redisValue in keyValues
+		            where redisValue.HasValue && !redisValue.IsNullOrEmpty
+		            select DeserializeContent<T>(redisValue)).ToList();
 
-                return result;
+
+				return values;
             }
             catch (Exception)
             {

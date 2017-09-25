@@ -1,0 +1,6 @@
+RedisRepository/.vs
+RedisRepository/packages/
+RedisRepository/RedisRepository/bin/
+RedisRepository/RedisRepository/obj/
+RedisRepository/RedisRepository.Test/bin/
+RedisRepository/RedisRepository.Test/obj/
